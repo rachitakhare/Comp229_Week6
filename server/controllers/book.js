@@ -16,7 +16,7 @@ module.exports.displayBookList = (req, res, next) => {
         else {
 
             //console.log(bookList);
-            res.render('book/list', { title: 'Book List', BookList: bookList });
+            res.render('book/list', { title: 'Book List', BookList: bookList,displayName: req.user ? req.user.displayName : ""  });
 
         }
 
@@ -24,7 +24,7 @@ module.exports.displayBookList = (req, res, next) => {
 }
 
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('book/add',{title: 'Add a Book '});
+    res.render('book/add',{title: 'Add a Book ',displayName: req.user ? req.user.displayName : "" });
 }
 
 module.exports.processAddPage = (req, res, next) => {
@@ -56,7 +56,7 @@ module.exports.displayEditPage = (req, res, next) => {
            console.log(err);
            res.end(err);
         }else{
-            res.render('book/edit',{title: 'Edit a Book ', book:BookToEdit});
+            res.render('book/edit',{title: 'Edit a Book ', book:BookToEdit,displayName: req.user ? req.user.displayName : "" });
 
         }
 
